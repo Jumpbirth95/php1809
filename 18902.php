@@ -29,15 +29,12 @@ echo "Can't read file";
 }
 ?>
 </textarea>
+<input type="hidden" name="filename" value="<?php echo $filename; ?>">
 <br>
-<input type="button" name="back" value="back" onclick="back1()" />
+<input type="button" name="back" value="back" onclick="location='18901.php'" />
 <input type="submit" name="save" value="Save"  />
 </form>
 <script type="text/javascript">
-function back1(){
-	document.form1.action="18901.php";
-	document.form1.submit();
-}
 </script>
 </div>
 </body>
