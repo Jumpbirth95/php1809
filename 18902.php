@@ -1,6 +1,6 @@
 <?php
-$filename=$_GET['filename'];
-$textcontent=$_GET['text'];
+$filename=$_POST['filename'];
+$textcontent=$_POST['text'];
 if(empty($filename)){
 	$filename="Newfile".date("Ymd");
 }
@@ -14,7 +14,7 @@ fclose($file);
 <html>
 <body>
 <div class="div" align=center>
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get" name="form1" enctype="multipart/formdata">
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" name="form1" enctype="multipart/formdata">
 <label for="file">Text</label>
 <br>
 <textarea rows="30" cols="100" id="text" name="text" >
@@ -33,9 +33,15 @@ echo "Can't read file";
 <br>
 <input type="button" name="back" value="back" onclick="location='18901.php'" />
 <input type="submit" name="save" value="Save"  />
+<input type="button" name="layertest" value="layer" onclick="layertest();">
 </form>
-<script type="text/javascript">
+<script type="text/javascript" src="layer.js">
 </script>
+<script>
+function layertest(){
+layer.msg("12312");};
+</script>
+
 </div>
 </body>
 </html>
