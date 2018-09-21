@@ -1,10 +1,34 @@
 <?php
 $filename=$_POST['filename'];
 $textcontent=$_POST['text'];
-if(empty($filename)){
-	$filename="Newfile".date("Ymd");
+$newfile=$_POST['new'];
+$handle=opendir("/var/www/html/php1809");
+$count=0;
+$fnameary=array();
+while(($check=readdir($handle))!==false){
+$fanmeary[$count]=$check;
+$count++;
 }
-echo $filename;
+if(empty($filename)){
+	$filename=date("md").".php";
+	echo $filename;
+	for(i=0;i<count($fnameary);i++){
+		if($fnameary[$count]==$filename){
+			break;
+		}	
+		}	
+
+		closedir($handle);
+if(empty($filename)&&$newfile="new"){
+	$filename=date("md").".php";
+	while(($check=readdir($handle))!==false){
+		if($check==$filename){
+			$filename=date("md").$count."1";
+			break;
+		}	
+}
+	echo $filename;
+}
 if(!empty($textcontent)){
 $file=fopen($filename,"w")or die('unable to open file');
 fwrite($file,$textcontent);

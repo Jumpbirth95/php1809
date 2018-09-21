@@ -11,8 +11,10 @@ while(($filename=readdir($cache))!==false){
 		$count++;
 		echo "</form>";
 	}}
-                 
-		
+$num=1;                
+echo "<form method=\"post\" name=\"newform\" action=\"18902.php\" >
+        <input type=\"submit\" name=\"new\" value=\"new\">
+	</form>";
 closedir($cache);
 ?>
 
