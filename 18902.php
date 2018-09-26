@@ -1,4 +1,7 @@
 <?php
+if(!empty($_POST['page'])){
+$pageback=$_POST['page'];}
+else{$pageback="18901.php";}
 $filename=$_POST['filename'];
 $textcontent=$_POST['text'];
 $newfile=$_POST['new'];
@@ -55,7 +58,7 @@ echo $contents;
 </textarea>
 <input type="hidden" name="filename" value="<?php echo $filename; ?>">
 <br>
-<input type="button" name="back" value="back" onclick="location='18901.php'" />
+<input type="button" name="back" value="back" onclick="location='<?php echo $pageback;?>'" />
 <input type="submit" name="save" value="Save"  />
 </form>
 
