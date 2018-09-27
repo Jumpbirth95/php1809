@@ -59,6 +59,7 @@ echo $contents;
 <input type="hidden" name="filename" value="<?php echo $filename; ?>">
 <br>
 <input type="button" name="back" value="back" onclick="location='<?php echo $pageback;?>'" />
+<input type="hidden" name="page" value="<?php echo $pageback;?>">
 <input type="submit" name="save" value="Save"  />
 </form>
 
