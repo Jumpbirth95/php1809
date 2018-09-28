@@ -1,7 +1,12 @@
 
+
+
 <html>
 <body>
 <?php
+$dbconnect=mysqli_connect('localhost:3306','ll','316','php');
+if(mysqli_connect_error()){
+die('Connect failed '.mysqli_connect_error());}
 $cache=opendir("/var/www/html/php1809");
 $count=0;
 $countarray=array();
@@ -9,6 +14,10 @@ echo "<table>";
 while(($filename=readdir($cache))!==false){
 	if(!preg_match('/^\./',$filename)){
 		$countarray[$count]=$filename;
+mysqli_select_db($dbconnect,'php');
+                $sql="insert into FileList(filename) values(".$filename.");";
+                if(mysqli_query($dbconnect,$sql)){
+echo "error".mysqli_error($dbconnect);}
 echo "<tr>";
 		echo "<form method=\"post\" name=\"form".$count."\" action=\"18902.php\" >";
 echo "<td>";
@@ -23,7 +32,8 @@ echo "</td>";
 		echo "</form>";
 echo "</tr>";
 	}} 
-echo "</table>";              
+echo "</table>";    
+mysqli_close($dbconnect);          
 closedir($cache);
 if(!empty($_POST['filename'])){
 unlink($_POST['filename']);
