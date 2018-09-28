@@ -4,33 +4,37 @@
 <html>
 <body>
 <?php
-$dbconnect=mysqli_connect('localhost:3306','ll','316','php');
+$dbconnect=mysqli_connect('localhost:3306','root','316','php');
 if(mysqli_connect_error()){
 die('Connect failed '.mysqli_connect_error());}
-$cache=opendir("/var/www/html/php1809");
+$cache=opendir("/var/www/html/Test");
 $count=0;
 $countarray=array();
 echo "<table>";
 while(($filename=readdir($cache))!==false){
 	if(!preg_match('/^\./',$filename)){
 		$countarray[$count]=$filename;
-mysqli_select_db($dbconnect,'php');
-                $sql="insert into FileList(filename) values(".$filename.");";
-                if(mysqli_query($dbconnect,$sql)){
-echo "error".mysqli_error($dbconnect);}
-echo "<tr>";
+		mysqli_select_db($dbconnect,'php');
+                $sql="insert into FileList(filename)values('$filename');";
+		$sqlcheck="select * from FileList where filename='$filename';";
+                $result=mysqli_query($dbconnect,$sqlcheck);
+		if(mysqli_num_rows($result)==0){
+			mysqli_query($dbconnect,$sql);
+		}
+		echo mysqli_error($dbconnect);
+		echo "<tr>";
 		echo "<form method=\"post\" name=\"form".$count."\" action=\"18902.php\" >";
-echo "<td>";
+		echo "<td>";
 		echo  "<a href=\"javascript:document.form".$count.".submit();\">".$countarray[$count]."</a>";
-echo "</td>";
-echo "<td>";
+		echo "</td>";
+		echo "<td>";
                 echo "<a href=\"javascript:void(0);\"  onclick=\"fdel("."form".$count.")\">"."删除"."</a>";
-echo "</td>";
+		echo "</td>";
 		echo "<input type=\"hidden\" name=\"filename\" value=\"".$countarray[$count]."\">";
                 echo "<input type=\"hidden\" name=\"page\" value=\"".$_SERVER['PHP_SELF']."\">";
 		$count++;
 		echo "</form>";
-echo "</tr>";
+		echo "</tr>";
 	}} 
 echo "</table>";    
 mysqli_close($dbconnect);          
