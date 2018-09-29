@@ -62,6 +62,6 @@
 			echo $gender;
 
 			?>
-		</body>
-		</html>
+</body>
+</html>
 

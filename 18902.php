@@ -5,7 +5,7 @@ else{$pageback="18901.php";}
 $filename=$_POST['filename'];
 $textcontent=$_POST['text'];
 $newfile=$_POST['new'];
-$handle=opendir("/var/www/html/Test");
+$handle=opendir("/var/www/html/php1809");
 $count=0;
 $fnameary=array();
 while(($check=readdir($handle))!==false){
